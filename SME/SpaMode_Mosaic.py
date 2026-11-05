@@ -143,7 +143,7 @@ class Train_SpaMode:
         self.Biloss_fn = nn.CrossEntropyLoss()
 
         self.epochs = self.arg["training_epoch"]
-        self.weight_factors = [self.arg["weight1"], self.arg["weight2"]]  # if RNA Slice2: [1, 10]
+        self.weight_factors = self.arg["weight_recon"][:2]  # [RNA, ADT]
         self.weight_bi = self.arg["weight_bi"]
         self.weight_adv = self.arg["weight_adv"]
         self.weight_kl = self.arg["weight_kl"]
@@ -295,7 +295,7 @@ class Train_SpaMode:
         loss_recon_omics1 = F.mse_loss(features_omics1, results['emb_recon_omics1'])
         loss_recon_omics2 = F.mse_loss(features_omics2, results['emb_recon_omics2'])
 
-        recon_loss = self.arg["weight1"] * loss_recon_omics1 + self.arg["weight2"] * loss_recon_omics2
+        recon_loss = self.weight_factors[0] * loss_recon_omics1 + self.weight_factors[1] * loss_recon_omics2
 
         one_hot_labels = torch.nn.functional.one_hot(results['mixed_labels'].long(), num_classes=2).to(self.device)
 
