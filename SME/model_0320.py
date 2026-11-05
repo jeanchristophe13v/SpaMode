@@ -132,7 +132,9 @@ class Encoder_overall(Module):
 
 
 
-        discriminator_pred, mixed_labels = self.get_discriminator_pred(emb_latent_combined, one_indices, zero_indices)
+        discriminator_pred, mixed_labels = None, None
+        if train:
+            discriminator_pred, mixed_labels = self.get_discriminator_pred(emb_latent_combined, one_indices, zero_indices)
 
 
         emb_recon_omics1 = self.decoder_omics1(emb_latent_combined, adj_spatial_omics1)

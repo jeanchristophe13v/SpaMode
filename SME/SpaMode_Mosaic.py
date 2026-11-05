@@ -237,7 +237,9 @@ class Train_SpaMode:
 
         return output
 
+    @torch.no_grad()
     def imputation(self, data, omics):
+        self.model.eval()
         adata_omics1 = data['adata_omics1']
         adata_omics2 = data['adata_omics2']
         adj = adjacent_matrix_preprocessing(adata_omics1, adata_omics2)
