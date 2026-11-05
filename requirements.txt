@@ -10,3 +10,10 @@ h5py==3.11.0
 matplotlib==3.7.5
 seaborn==0.13.2
 tqdm==4.67.1
+# notebook SpaMode_Mosaic_HT.ipynb: sc.pp.highly_variable_genes(flavor="seurat_v3")
+scikit-misc==0.1.4
+rpy2==3.5.11
+python-igraph==0.11.3
+leidenalg==0.10.2
+# SpaMode/Process_BC_list.py
+harmonypy==0.0.9
